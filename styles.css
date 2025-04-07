@@ -190,6 +190,9 @@ body {
   .profile{
     display:none;
 }
+  .nav-links{
+    display:none;
+  }
   .arrows{
     display:none;
 }
@@ -305,7 +308,7 @@ body {
   padding-left: 10%;
 }
 
-@media (max-width: 768px) {
+@media (max-width:1024px) {
   .arrows{
     display: none;
   }
