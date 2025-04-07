@@ -186,8 +186,11 @@ body {
   padding-right: 30%;
   padding-left: 10%;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .profile{
+    display:none;
+}
+  .arrows{
     display:none;
 }
 /*@media (max-width: 768px) {
