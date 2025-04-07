@@ -313,7 +313,7 @@ body {
   padding-left: 10%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1224px) {
   .arrows{
     display: none;
   }
