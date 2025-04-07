@@ -15,6 +15,7 @@ const slides = [
     desc: 'Excellent Writing Skills: Clear, concise, and engaging writing is essential Research Skills The ability to research topics thoroughly and accurately'
   }
 ];
+
 let current = 0;
 const imgEl = document.getElementById('slide-image');
 const titleEl = document.getElementById('slide-title');
