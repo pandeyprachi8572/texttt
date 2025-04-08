@@ -2,18 +2,18 @@ const slides = [
   {
     img: 'img/banner_1.jpg',
     title: 'often for marketing or communication purposes. ',
-    desc: 'Content writing is process of blog posts, website copy, and social media updates, to inform, educate, process of blog posts, website copy, and social media updates, to inform or persuade a target audience the process of blog posts, website copy, and social media updates, to inform, educate, or persuade a target audience, often for marketing or communication purposes. '
+    desc: 'Content writing is the process of blog posts, website copy, and social media updates, to inform, educate, or persuade a target audience, often for marketing or communication purposes. '
   },
   {
     img: 'img/banner_2.jpg',
     title: 'Blog posts and articles',
-    desc: 'Adaptability: The ability to adapt process of blog posts, website copy, and social media updates, to inform,  process of blog posts, website copy, and social media updates, to inform educate, or persuade a target audience writing style to different platforms and audiences.fkgjfd jfdlkgjfd f'
+    desc: 'Adaptability: The ability to adapt writing style to different platforms and audiences.fkgjfd jfdlkgjfd f'
   },
   {
     img: 'img/banner_3.jpg',
     title: 'Excellent Writing Skills: ',
-    desc: 'Excellent Writing Skills: Clear,process of blog posts, website copy, and social media updates, to inform,  process of blog posts, website copy, and social media updates, to informeducate, or persuade a target audience concise, and engaging writing is essential Research Skills The ability to research topics thoroughly and accurately'
-  } 
+    desc: 'Excellent Writing Skills: Clear, concise, and engaging writing is essential Research Skills The ability to research topics thoroughly and accurately'
+  }
 ];
 
 let current = 0;
@@ -21,12 +21,24 @@ const imgEl = document.getElementById('slide-image');
 const titleEl = document.getElementById('slide-title');
 const descEl = document.getElementById('slide-description');
 function updateSlide(index) {
+  // Remove zoom class first
+  imgEl.classList.remove('zoomed');
+  
+  // Force reflow before adding class back
+  void imgEl.offsetWidth;
+  
+  // Update slide content
   imgEl.src = slides[index].img;
   titleEl.textContent = slides[index].title;
   descEl.textContent = slides[index].desc;
+  
+  // Add zoom animation
+  imgEl.classList.add('zoomed');
+  
+  // Update text animations
   titleEl.classList.remove('animate-title');
   descEl.classList.remove('animate-desc');
-  void titleEl.offsetWidth; 
+  void titleEl.offsetWidth;
   void descEl.offsetWidth;
   titleEl.classList.add('animate-title');
   descEl.classList.add('animate-desc');
