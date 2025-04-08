@@ -437,13 +437,13 @@ body {
 }
 @media (max-width: 768px) {
   .swiper-slide img.card-img {
-    height: 300px;
-    padding-top: 10%;
+    height: 350px;
+  
   }
 }
 @media (max-width: 576px) {
   .swiper-slide img.card-img {
-    height: 250px;
+    height: 300px;
   }
 }
 
