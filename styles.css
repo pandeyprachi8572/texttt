@@ -450,5 +450,8 @@ body {
    .swiper-slide img.card-img {
     height: 400px;
   
-  }
+  };
+.sweper-slide{
+  padding-bottom:10%;
+}
 
