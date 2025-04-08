@@ -446,4 +446,9 @@ body {
     height: 300px;
   }
 }
+@media (max-width:1224px){
+   .swiper-slide img.card-img {
+    height: 400px;
+  
+  }
 
