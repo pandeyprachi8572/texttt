@@ -15,31 +15,28 @@ const slides = [
     desc: 'Excellent Writing Skills: Clear, concise, and engaging writing is essential Research Skills The ability to research topics thoroughly and accurately'
   }
 ];
-
 let current = 0;
 const imgEl = document.getElementById('slide-image');
 const titleEl = document.getElementById('slide-title');
 const descEl = document.getElementById('slide-description');
 function updateSlide(index) {
-  // Remove zoom class first
-  imgEl.classList.remove('zoomed');
+  // Start with zoom animation
+  imgEl.style.animation = 'none';
+  void imgEl.offsetWidth; // Trigger reflow
+  imgEl.style.animation = 'zoomIn 1.5s ease-out forwards';
   
-  // Force reflow before adding class back
-  void imgEl.offsetWidth;
-  
-  // Update slide content
+  // Change slide content immediately
   imgEl.src = slides[index].img;
   titleEl.textContent = slides[index].title;
   descEl.textContent = slides[index].desc;
   
-  // Add zoom animation
-  imgEl.classList.add('zoomed');
-  
-  // Update text animations
+  // Reset text animations
   titleEl.classList.remove('animate-title');
   descEl.classList.remove('animate-desc');
-  void titleEl.offsetWidth;
+  void titleEl.offsetWidth; 
   void descEl.offsetWidth;
+  
+  // Apply animations
   titleEl.classList.add('animate-title');
   descEl.classList.add('animate-desc');
 }
