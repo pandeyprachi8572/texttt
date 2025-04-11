@@ -2,182 +2,642 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> Project Text</title>
-  <link rel="stylesheet" href="styles.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yogi Ji Carousel</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      color: white;
+      z-index: 1000;
+     background-color: #f26a21;
+    }
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: bold;
+}
+    .carousel-item {
+      height: 90vh;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+}
+    .carousel-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      animation: zoomIn 5s ease forwards;
+      z-index: 0;
+}
+    @keyframes zoomIn {
+      0% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+}
+    .carousel-caption {
+      position: absolute;
+      bottom: 50%;
+      left: 10%;
+      z-index: 2;
+      animation: slideUp 1s ease forwards;
+      opacity: 0;
+}
+    .card-img-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  border-radius: 1rem;
+}
+
+.card-img {
+  border-radius: 1rem;
+  height: 100%;
+  object-fit: cover;
+}
+
+    
+
+    @keyframes slideUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .fixed-icon {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      color:white;
+      transform: translateY(-50%);
+      background: #f26a21;
+      border-radius: 0 15px 15px 0;
+      padding: 10px;
+      z-index: 3;
+    }
+
+    .leader-wrapper {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 4;
+    }
+
+    .leader-img {
+      height: 280px;
+    margin-right: -75px;
+      margin-bottom: -10px;  
+          z-index: 1;
+        
+    }
+
+    .polygon-box {
+      background-color: #f26a21;
+      color: white;
+      padding: 25px 30px;
+      clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+      z-index: 1;
+      text-align: center;
+      width: 460px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      position: absolute;
+      bottom: 50px;
+      top: auto;
+  
+    }
+
+    .carousel-control-prev {
+      left: 55%;
+      transform: translateX(-120%);
+    }
+    .carousel-control-next {
+      right: 55%;
+      transform: translateX(120%);
+    }
+    .carousel-control-prev-icon::after,
+    .carousel-control-next-icon::after {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 20px;
+      color: #f26a21;
+    }
+    @media (max-width: 768px) {
+      .carousel-caption h1 { font-size: 1.5rem; }
+      .carousel-caption p { font-size: 0.9rem; }
+      .leader-img { height: 180px; margin-bottom: -20px; }
+      .polygon-box { width: 280px; padding: 15px; }
+    }
+    .swiper {
+      width: 100%;
+      padding-top: 5%;
+      padding-left: 3%;
+      padding-right: 3%; 
+    }
+    .swiper-slide {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transition: 0.5s;
+    }
+    .card-content {
+      position: absolute;
+      width: 100%;
+      padding: 20px;
+      text-align: start;
+      color: #fff;
+      
+      transition: 0.5s;
+    }
+    .card-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      
+      background: #f26a21;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      opacity: 0;
+      transition: 0.5s;
+    }
+    .card-hover i {
+      font-size: 40px;
+      margin-bottom: 0px;
+      padding-left: 10px;
+      padding-bottom: 50%;
+    }
+    .swiper-slide:hover .card-hover {
+      opacity: 1;
+    }
+    .swiper-slide:hover .card-content {
+      opacity: 0;
+    }
+    .btn {
+      margin-top: 8px;
+      margin-bottom: 4px;
+      padding:8px 10px;
+      background: #fff;
+      color: #333;
+    
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background:#f26a21;
+      color: white;
+      color: #fff;
+    }
+
+
+    .custom-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 8px 16px;
+    color: white;
+    background-color: transparent;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .icon-circle {
+    background-color: #f26a21;
+    border-radius: 50%;
+    padding: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .readmore-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 8px 12px 8px 20px;
+    font-weight: 600;
+    color: #000;
+    font-size: 14px;
+    gap: 10px;
+   margin-left: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .readmore-icon {
+    background-color: #f26a21; /* orange-500 */
+    border-radius: 50%;
+    padding: 8px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-hover h3{
+    padding-left: 20px;
+  }
+  .card-hover p{
+    padding-left: 20px;
+  }
+
+  .readmore-btn:hover {
+    opacity: 0.95;
+  }
+.custom-arrow {
+  font-size: 2rem;
+  color: black;
+  
+  background-color: white !important;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  
+  background-image: none !important;
+}
+.custom-arrow:hover {
+  background-color: #f26a21 !important;
+  color: white;
+  cursor: pointer;
+}
+.fixed-icon {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  background-color: #f26a21;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding: 15px 10px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 150px;
+}
+
+.fixed-icon .icon-circle {
+  background-color: white;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .custom-arrow{
+    display: none;
+  }
+  .carousel-caption {
+   padding-left: 20%;
+      bottom: 50%;
+     align-items: center;
+     text-align: center;
+}
+}
+  </style>
 </head>
 <body>
-<header class="header" >
-  <!----Navbar----->
-  <nav class="navbar">  
-    <button class="hamburger" id="hamburger">&#9776;</button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#"><i class="bi bi-house-fill"></i></a></li>
-      <li class="dropdown">
-        <a href="#">About Us <i class="bi bi-chevron-down"></i></a>
-        <ul  class="dropdown-menu">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">RAMP <i class="bi bi-chevron-down "></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#">Shemes <i class="bi bi-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Workshop</a></li>
-      <li><a href="#">B-Hub</a></li>
-      <li class="dropdown">
-        <a href="#">I-Hub <i class="bi bi-chevron-down"></i></a>
-        <ul class="dropdown-menu ">
-          <li><a href="#">Option 1</a></li>
-          <li><a href="#">Option 2</a></li>
-          <li><a href="#">Option 3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">MSME Samvaad</a></li>
-    </ul>
-    <div class="buttons">
-      <button class="btn"> <i class="bi bi-calculator-fill"></i> Incentive Calculator</button>
-      <button class="btn login-btn">Login / Register</button>
-    </div>
-  </nav>
-</header>
-<!-- Slider Section -->
-<section class="slider">
-  <img id="slide-image" class="slide-img" src="img/banner_2.jpg" alt="Slider" />
-  <div class="slider-overlay">
-  
-    <div class="static-image">
-      <i class="bi bi-star-fill"></i>  
-    </div>
-    <div class="slide-content">
-      <h1 id="slide-title" class="animate-title">Editing and Proofreading</h1>
-      <p id="slide-description" class="animate-desc">Excellent Writing Skills: Clear, concise, and engaging writing is essential. 
-        Research Skills: The ability to research topics thoroughly and accurately. 
-        </p>
-    </div>    
-  <div class="profile">
-    <img src="img/yogi.png" alt="Profile" />
-    <div class="profile-text">
-      <strong>Yogi Adityanath</strong>
-      <p>Hon’ble Chief Minister of Uttar Pradesh</p>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="#"><i class="fas fa-home"></i></a>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">About Us</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Vision</a></li>
+                <li><a class="dropdown-item" href="#">Team</a></li>
+              </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">RAMP</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Overview</a></li>
+                <li><a class="dropdown-item" href="#">Initiatives</a></li>
+              </ul>
+            </li>
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">Schemes</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Scheme A</a></li>
+                <li><a class="dropdown-item" href="#">Scheme B</a></li>
+              </ul>
+            </li>
+          
+            <li class="nav-item"><a class="nav-link fw-bold" href="#">Champions</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold" href="#">Workshop</a></li>
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">B-Hub</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">B-Hub Info</a></li>
+              </ul>
+            </li>
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">I-Hub</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">I-Hub Overview</a></li>
+              </ul>
+            </li>
+          
+            <li class="nav-item"><a class="nav-link fw-bold" href="#">MSME Samvaad</a></li>
+            <li class="nav-item"><a class="nav-link fw-bold" href="#">IE-MSME</a></li>
+          </ul>
+          
+      <div class="d-flex gap-2">
+        <button class="btn btn-light text-black rounded-pill">
+          <i class="fas fa-calculator me-1" style="color: black;"></i> Incentive Calculator
+        </button>
+        <button class="btn btn-light text-danger rounded-pill">Log in / Register</button>
+      </div>
     </div>
   </div>
-  </div>
-  <div class="arrows">
-    <button id="prev"><i class="bi bi-arrow-left-short"></i></button>
-    <button id="next"><i class="bi bi-arrow-right-short"></i></button>
-  </div>
-</section>
-<section class="slider-section">
-  <div class="swiper mySwiper container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="img/banner_1.jpg" class="card-img" alt="Image 1" />
-        <div class="overlay"></div>
-        <div class="fixed-content">
-          <h5 class="text-white">Heading 1</h5>
-          <button class="btn btn-light mt-2">
-            Read More <i class="bi bi-arrow-right ms-2"></i>
-          </button>
-        </div>
-        <div class="hover-icon">
-          <i class="bi bi-star-fill"></i>
-        </div>
-        <div class="hover-content">
-          <p>This is some additional content that slides up on hover Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, rerum..</p>
+</nav>
+<div id="mainCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" style="margin-top: 56px;">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="carousel-bg" style="background-image: url('img/banner_2.jpg');"></div>
+      <div class="carousel-caption text-start">
+        <h1>RAMP</h1>
+        <p>Accelerating MSME Performance by promoting innovation and digitization.</p>
+      </div>
+      <div class="leader-wrapper">
+        <img src="img/yogi.png" class="leader-img" alt="Yogi Adityanath" />
+        <div class="polygon-box">
+          <h5 class="mb-0 fw-bold">Yogi Adityanath</h5>
+          <small>Hon’ble Chief Minister of Uttar Pradesh</small>
         </div>
       </div>
-      <!-- Card-->
-      <div class="swiper-slide">
-        <img src="img/banner_1.jpg" class="card-img" alt="Image 1" />
-        <div class="overlay"></div>
-        <div class="fixed-content">
-          <h5 class="text-white">Heading 1</h5>
-          <button class="btn btn-light mt-2 p-3 mb-2 bg-danger-subtle text-danger-emphasis">
-            Read More <i class="bi bi-arrow-right ms-2    "></i>
-          </button>
-        </div>
-        <div class="hover-icon">
-          <i class="bi bi-star-fill"></i>
-        </div>
-        <div class="hover-content">
-          <p>This is some additional content that slides up Lorem ipsum dolor sit amet. on hover.</p>
+    </div>
+    <div class="carousel-item">
+      <div class="carousel-bg" style="background-image: url('img/banner_3.jpg');"></div>
+      <div class="carousel-caption text-start">
+        <h1>Empowering MSMEs</h1>
+        <p>Bringing growth opportunities across Uttar Pradesh.</p>
+      </div>
+      <div class="leader-wrapper">
+        <img src="img/yogi.png" class="leader-img" alt="Yogi Adityanath" />
+        <div class="polygon-box">
+          <h5 class="mb-0 fw-bold">Yogi Adityanath</h5>
+          <small>Hon’ble Chief Minister of Uttar Pradesh</small>
         </div>
       </div>
-      <!-- Card 2 -->
-      <div class="swiper-slide">
-        <img src="img/banner_1.jpg" class="card-img" alt="Image 1" />
-        <div class="overlay"></div>
-        <div class="fixed-content">
-          <h5 class="text-white">Heading 1</h5>
-          <button class="btn btn-light mt-2">
-            Read More <i class="bi bi-arrow-right ms-2"></i>
-          </button>
-        </div>
-        <div class="hover-icon">
-          <i class="bi bi-star-fill"></i>
-        </div>
-        <div class="hover-content">
-          <p>This is some additional content that slides up on hover Lorem ipsum dolor, sit amet consectetur adipisicing elit.p>
+    </div>
+    <div class="carousel-item">
+      <div class="carousel-bg" style="background-image: url('img/banner_1 (2).jpg');"></div>
+      <div class="carousel-caption text-start">
+        <h1>Empowering MSMEs</h1>
+        <p>Bringing growth opportunities across Uttar Pradesh.</p>
+      </div>
+      <div class="leader-wrapper">
+        <img src="img/yogi.png" class="leader-img" alt="Yogi Adityanath" />
+        <div class="polygon-box">
+          <h5 class="mb-0 fw-bold">Yogi Adityanath</h5>
+          <small>Hon’ble Chief Minister of Uttar Pradesh</small>
         </div>
       </div>
-            <!-- Card 3 -->
-            <div class="swiper-slide">
-              <img src="img/banner_1.jpg" class="card-img" alt="Image 1" />
-              <div class="overlay"></div>
-              <div class="fixed-content">
-                <h5 class="text-white">Heading 1</h5>
-                <button class="btn btn-light mt-2">
-                  Read More <i class="bi bi-arrow-right ms-2"></i>
-                </button>
-              </div>
-              <div class="hover-icon">
-                <i class="bi bi-star-fill"></i>
-              </div>
-              <div class="hover-content">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error consectetur quam odio! Illum, sunt consequuntur?.</p>
-              </div>
-            </div>      
-      <!-- Card 4 -->
-      <div class="swiper-slide">
-        <img src="img/banner_2.jpg" class="card-img" alt="Image 2" />
-        <div class="overlay"></div>
-        <div class="fixed-content">
-          <h5 class="text-white">Heading 2</h5>
-          <button class="btn btn-light mt-2">
-            Read More <i class="bi bi-arrow-right ms-2"></i>
-          </button>
-        </div>
-        <div class="hover-icon">
-          <i class="bi bi-star-fill"></i>
-        </div>
-        <div class="hover-content">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ea quis. Rem labore accusantium inventore?.</p>
+    </div>
+    <div class="carousel-item">
+      <div class="carousel-bg" style="background-image: url('img/banner_1.jpg');"></div>
+      <div class="carousel-caption text-start">
+        <h1>Empowering MSMEs</h1>
+        <p>Bringing growth opportunities across Uttar Pradesh.</p>
+      </div>
+      <div class="leader-wrapper">
+        <img src="img/yogi.png" class="leader-img" alt="Yogi Adityanath" />
+        <div class="polygon-box">
+          <h5 class="mb-0 fw-bold">Yogi Adityanath</h5>
+          <small>Hon’ble Chief Minister of Uttar Pradesh</small>
         </div>
       </div>
     </div>
   </div>
-</section>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script src="script.js"></script>
+  <div class="fixed-icon">
+    <div class="icon-circle">
+      <img src="https://img.icons8.com/ios-filled/100/fa314a/rss.png" width="30" />
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+    <span class="custom-arrow" aria-hidden="true">&#8592;</span> <!-- Left Arrow -->
+    <span class="visually-hidden">Previous</span>
+  </button>  
+  <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+    <span class="custom-arrow" aria-hidden="true">&#8594;</span> <!-- Right Arrow -->
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Swiper Container -->
+<div class="swiper mySwiper">
+<div class="swiper-wrapper">
+<!-- Slide 1 -->
+    <div class="swiper-slide" style="background-image: url('img/banner_3.jpg');">
+      <div class="card-content">
+        <h2>Heading 1</h2>
+        <button class="custom-btn">
+          READ MORE
+          <span class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="card-hover">
+        <i class="bi bi-star-fill"></i>
+
+        <h3>Heading 1</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, incidunt?</p>
+        <button class="readmore-btn">
+          <span class="readmore-text">READ MORE</span>
+          <span class="readmore-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="swiper-slide" style="background-image: url('img/banner_3.jpg');">
+      <div class="card-content">
+        <h2>Heading 2</h2>
+        <button class="custom-btn">
+          READ MORE
+          <span class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="card-hover">
+        <i class="bi bi-star-fill"></i>
+        <h3>Heading 2</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, incidunt?</p>
+        <button class="readmore-btn">
+          <span class="readmore-text">READ MORE</span>
+          <span class="readmore-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="swiper-slide" style="background-image: url('img/banner_3.jpg');">
+      <div class="card-content">
+        <h2>Heading 3</h2>
+        
+        <button class="custom-btn">
+          READ MORE
+          <span class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="card-hover">
+        <i class="bi bi-star-fill"></i>
+        <h3>Heading 3</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, incidunt?</p>
+        <button class="readmore-btn">
+          <span class="readmore-text">READ MORE</span>
+          <span class="readmore-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="swiper-slide" style="background-image: url('img/banner_3.jpg');">
+      <div class="card-content">
+        <h2>Heading 3</h2>
+        <button class="custom-btn">
+          READ MORE
+          <span class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="card-hover">
+        <i class="bi bi-star-fill"></i>
+        <h3>Heading 3</h3>
+        <button class="readmore-btn">
+          <span class="readmore-text">READ MORE</span>
+          <span class="readmore-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="swiper-slide" style="background-image: url('img/banner_3.jpg');">
+      <div class="card-content">
+        <h2>Heading 3</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, incidunt?</p>
+        <button class="custom-btn">
+          READ MORE
+          <span class="icon-circle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="card-hover">
+        <i class="bi bi-star-fill"></i>
+        <h3>Heading 3</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, incidunt?</p>
+        <button class="readmore-btn">
+          <span class="readmore-text">READ MORE</span>
+          <span class="readmore-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="white" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 1 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SwiperJS Script -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      320: { slidesPerView: 1 },
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
